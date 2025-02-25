@@ -8,6 +8,8 @@ import { dbConnection } from "./mongo.js"
 import apiLimiter from "../src/middlewares/rate-limit-validator.js"
 import swaggerUi from 'swagger-ui-express';
 import swaggerJSDoc from 'swagger-jsdoc';
+import userRoutes from "../src/user/user.routes.js"
+import authRoutes from "../src/auth/auth.routes.js"
 
 const middlewares = (app) => {
     app.use(express.urlencoded({extended: false}))
@@ -41,13 +43,15 @@ const swaggerOptions = {
         description: 'API documentation for Coperex system',
       },
     },
-    apis: [],
+    apis: ['./src/auth/auth.routes.js', './src/user/user.routes.js'],
   };
 
 const swaggerDocs = swaggerJSDoc(swaggerOptions);
 
 const routes = (app) =>{
-    app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+    app.use('/coperex/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+    app.use("/coperex/v1/auth", authRoutes);
+    app.use("/coperex/v1/user", userRoutes);
 }
 
 const conectarDB = async () =>{
