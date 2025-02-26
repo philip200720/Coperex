@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { listValidator, updateUserValidator, getUserByIdValidator, deleteUserValidator, updatePasswordValidator } from "../middlewares/user-validator.js";
-import { getUserById, getUsers, updateUser, deleteUser, updatePassword } from "./user.controller.js";
+import { listValidator, getUserByIdValidator, deleteUserValidator } from "../middlewares/user-validator.js";
+import { getUserById, getUsers, deleteUser } from "./user.controller.js";
 
 const router = Router();
 
@@ -39,35 +39,6 @@ router.get("/", listValidator, getUsers);
 
 /**
  * @swagger
- * /updateUser:
- *   put:
- *     summary: Update user details
- *     description: Updates the details of an existing user.
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             properties:
- *               name:
- *                 type: string
- *               surname:
- *                 type: string
- *               username:
- *                 type: string
- *               email:
- *                 type: string
- *     responses:
- *       200:
- *         description: User updated successfully
- *       400:
- *         description: Invalid input
- */
-router.put("/updateUser", updateUserValidator, updateUser);
-
-/**
- * @swagger
  * /deleteUser:
  *   delete:
  *     summary: Delete a user
@@ -79,30 +50,5 @@ router.put("/updateUser", updateUserValidator, updateUser);
  *         description: User not found
  */
 router.delete("/deleteUser", deleteUserValidator, deleteUser);
-
-/**
- * @swagger
- * /updatePassword:
- *   patch:
- *     summary: Update user password
- *     description: Updates the password for a user.
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             properties:
- *               currentPassword:
- *                 type: string
- *               newPassword:
- *                 type: string
- *     responses:
- *       200:
- *         description: Password updated successfully
- *       400:
- *         description: Invalid password or other error
- */
-router.patch("/updatePassword", updatePasswordValidator, updatePassword);
 
 export default router;

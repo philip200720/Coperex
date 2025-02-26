@@ -10,6 +10,7 @@ import swaggerUi from 'swagger-ui-express';
 import swaggerJSDoc from 'swagger-jsdoc';
 import userRoutes from "../src/user/user.routes.js"
 import authRoutes from "../src/auth/auth.routes.js"
+import { createDefaultAdmin } from "../src/user/user.controller.js"
 
 const middlewares = (app) => {
     app.use(express.urlencoded({extended: false}))
@@ -63,11 +64,12 @@ const conectarDB = async () =>{
     }
 }
 
-export const initServer = () => {
+export const initServer = async () => {
     const app = express()
     try{
         middlewares(app)
-        conectarDB()
+        await conectarDB()
+        await createDefaultAdmin()
         routes(app)
         app.listen(process.env.PORT)
         console.log(`Server running on port ${process.env.PORT}`)
