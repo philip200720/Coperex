@@ -8,6 +8,7 @@ import { dbConnection } from "./mongo.js"
 import apiLimiter from "../src/middlewares/rate-limit-validator.js"
 import swaggerUi from 'swagger-ui-express';
 import swaggerJSDoc from 'swagger-jsdoc';
+import companyRoutes from "../src/company/company.routes.js"
 
 const middlewares = (app) => {
     app.use(express.urlencoded({extended: false}))
@@ -48,6 +49,7 @@ const swaggerDocs = swaggerJSDoc(swaggerOptions);
 
 const routes = (app) =>{
     app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+    app.use("/coperex/v1/company", companyRoutes)
 }
 
 const conectarDB = async () =>{
