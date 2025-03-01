@@ -1,0 +1,261 @@
+{
+	"info": {
+		"_postman_id": "6519b48e-d70e-46cc-a320-a57b5a67ae7b",
+		"name": "Coperex",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "37589075"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"admin123\",\r\n    \"password\": \"Abcd1234.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://127.0.0.1:3000/coperex/v1/auth/login"
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2MyYmE5ZjY1NDcyMDg4YjVmMzA4YzIiLCJpYXQiOjE3NDA4MTUxNzAsImV4cCI6MTc0MDgxODc3MH0.xEPDprWlG7tX2LhuaxuTn0DXxvUnhQ59nHv1cFEhVpI"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"John\",\r\n    \"surname\": \"Doe\",\r\n    \"username\": \"johndoe123\",\r\n    \"email\": \"johndoe@example.com\",\r\n    \"password\": \"Abcd1234.\",\r\n    \"role\": \"ADMIN_ROLE\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://127.0.0.1:3000/coperex/v1/auth/register"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "findUser",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2MyYmE5ZjY1NDcyMDg4YjVmMzA4YzIiLCJpYXQiOjE3NDA4MTUxNzAsImV4cCI6MTc0MDgxODc3MH0.xEPDprWlG7tX2LhuaxuTn0DXxvUnhQ59nHv1cFEhVpI"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://127.0.0.1:3000/coperex/v1/user/findUser/67c2bbf596498fb0f3bea119"
+					},
+					"response": []
+				},
+				{
+					"name": "listUsers",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2MyYmE5ZjY1NDcyMDg4YjVmMzA4YzIiLCJpYXQiOjE3NDA4MTU1NTAsImV4cCI6MTc0MDgxOTE1MH0.0vWrRlGCI0lYy9WBVPPj5aJCJJQGa3R1R_WmQqCWYiA"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://127.0.0.1:3000/coperex/v1/user/"
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2MyYmE5ZjY1NDcyMDg4YjVmMzA4YzIiLCJpYXQiOjE3NDA4MTU1NTAsImV4cCI6MTc0MDgxOTE1MH0.0vWrRlGCI0lYy9WBVPPj5aJCJJQGa3R1R_WmQqCWYiA"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"uid\": \"67c2bbf596498fb0f3bea119\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://127.0.0.1:3000/coperex/v1/user/deleteUser"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "company",
+			"item": [
+				{
+					"name": "createCompany",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2MyYmE5ZjY1NDcyMDg4YjVmMzA4YzIiLCJpYXQiOjE3NDA4MTU1NTAsImV4cCI6MTc0MDgxOTE1MH0.0vWrRlGCI0lYy9WBVPPj5aJCJJQGa3R1R_WmQqCWYiA"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"TechCorp\",\r\n    \"rate\": 5,\r\n    \"foundingYear\": 1998,\r\n    \"category\": \"TERTIARY\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://127.0.0.1:3000/coperex/v1/company/createCompany"
+					},
+					"response": []
+				},
+				{
+					"name": "updateCompany",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2MyYmE5ZjY1NDcyMDg4YjVmMzA4YzIiLCJpYXQiOjE3NDA4MTU1NTAsImV4cCI6MTc0MDgxOTE1MH0.0vWrRlGCI0lYy9WBVPPj5aJCJJQGa3R1R_WmQqCWYiA"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"_id\": \"67c2bdff212e61b74d372a60\",\r\n    \"rate\": 4\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://127.0.0.1:3000/coperex/v1/company/updateCompany"
+					},
+					"response": []
+				},
+				{
+					"name": "generateReport",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response content type is application/vnd.openxmlformats-officedocument.spreadsheetml.sheet\", function () {\r",
+									"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet\");\r",
+									"});\r",
+									"\r",
+									"var template = `\r",
+									"<canvas id=\"myChart\" height=\"75\"></canvas>\r",
+									"\r",
+									"<script src=\"https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js\"></script>\r",
+									"\r",
+									"<script>\r",
+									"    var ctx = document.getElementById(\"myChart\");\r",
+									"\r",
+									"    var myChart = new Chart(ctx, {\r",
+									"        type: \"line\",\r",
+									"        data: {\r",
+									"            labels: [],\r",
+									"            datasets: [{\r",
+									"                data: [],\r",
+									"                backgroundColor: \"rgba(75,192,192,0.4)\",\r",
+									"                borderColor: \"rgba(75,192,192,1)\",\r",
+									"                borderWidth: 1\r",
+									"            }]\r",
+									"        },\r",
+									"        options: {\r",
+									"            legend: { display: false },\r",
+									"            title: {\r",
+									"                display: true,\r",
+									"                text: 'Response Data'\r",
+									"            },\r",
+									"            scales: {\r",
+									"                xAxes: [{\r",
+									"                    display: true,\r",
+									"                    scaleLabel: {\r",
+									"                        display: true,\r",
+									"                        labelString: 'Data'\r",
+									"                    }\r",
+									"                }],\r",
+									"                yAxes: [{\r",
+									"                    display: true,\r",
+									"                    scaleLabel: {\r",
+									"                        display: true,\r",
+									"                        labelString: 'Value'\r",
+									"                    }\r",
+									"                }]\r",
+									"            }\r",
+									"        }\r",
+									"\r",
+									"    });\r",
+									"\r",
+									"    pm.getData(function (err, value) {\r",
+									"        myChart.data.datasets[0].data = value.response.data;\r",
+									"        myChart.data.labels = value.response.labels;\r",
+									"        myChart.update();\r",
+									"    });\r",
+									"\r",
+									"</script>`;\r",
+									"function constructVisualizerPayload() {\r",
+									"    var res = pm.response.json();\r",
+									"\r",
+									"    var visualizerData = {\r",
+									"        labels: Object.keys(res),\r",
+									"        data: Object.values(res)\r",
+									"    };\r",
+									"\r",
+									"    return {response: visualizerData};\r",
+									"}\r",
+									"\r",
+									"pm.visualizer.set(template, constructVisualizerPayload());"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://127.0.0.1:3000/coperex/v1/company/generateReport"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

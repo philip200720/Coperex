@@ -1,0 +1,9 @@
+[{
+  "_id": {
+    "$oid": "67c2bdff212e61b74d372a60"
+  },
+  "name": "TechCorp",
+  "rate": 4,
+  "foundingYear": 1998,
+  "category": "TERTIARY"
+}]
