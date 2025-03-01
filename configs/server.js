@@ -8,6 +8,9 @@ import { dbConnection } from "./mongo.js"
 import apiLimiter from "../src/middlewares/rate-limit-validator.js"
 import swaggerUi from 'swagger-ui-express';
 import swaggerJSDoc from 'swagger-jsdoc';
+import userRoutes from "../src/user/user.routes.js"
+import authRoutes from "../src/auth/auth.routes.js"
+import { createDefaultAdmin } from "../src/user/user.controller.js"
 
 const middlewares = (app) => {
     app.use(express.urlencoded({extended: false}))
@@ -41,13 +44,15 @@ const swaggerOptions = {
         description: 'API documentation for Coperex system',
       },
     },
-    apis: [],
+    apis: ['./src/auth/auth.routes.js', './src/user/user.routes.js'],
   };
 
 const swaggerDocs = swaggerJSDoc(swaggerOptions);
 
 const routes = (app) =>{
-    app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+    app.use('/coperex/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+    app.use("/coperex/v1/auth", authRoutes);
+    app.use("/coperex/v1/user", userRoutes);
 }
 
 const conectarDB = async () =>{
@@ -59,11 +64,12 @@ const conectarDB = async () =>{
     }
 }
 
-export const initServer = () => {
+export const initServer = async () => {
     const app = express()
     try{
         middlewares(app)
-        conectarDB()
+        await conectarDB()
+        await createDefaultAdmin()
         routes(app)
         app.listen(process.env.PORT)
         console.log(`Server running on port ${process.env.PORT}`)
