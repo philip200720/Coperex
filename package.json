@@ -8,7 +8,7 @@
     "dev": "nodemon index.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Philip Posadas",
   "license": "MIT",
   "type": "module",
   "dependencies": {
