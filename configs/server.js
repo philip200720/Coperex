@@ -45,13 +45,14 @@ const swaggerOptions = {
         description: 'API documentation for Coperex system',
       },
     },
-    apis: ['./src/auth/auth.routes.js', './src/user/user.routes.js'],
+    apis: ['./src/auth/auth.routes.js', './src/user/user.routes.js', './src/company/company.routes.js'],
 };
 
 const swaggerDocs = swaggerJSDoc(swaggerOptions);
 
+
 const routes = (app) => {
-    app.use('/coperex/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+    app.use('/coperex/v1/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
     app.use("/coperex/v1/company", companyRoutes);
     app.use("/coperex/v1/auth", authRoutes);
     app.use("/coperex/v1/user", userRoutes);

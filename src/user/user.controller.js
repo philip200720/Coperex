@@ -108,8 +108,7 @@ export const createDefaultAdmin = async () => {
           surname: "123",
           username: "admin123",
           email: "admin123@example.com",
-          password: await hash("SecureP@ssword123"),
-          phone: "12345678",
+          password: await hash("Abcd1234."),
           role: "ADMIN_ROLE",
           status: true,
         };

@@ -8,6 +8,7 @@ import { body, param } from 'express-validator';
 
 
 export const registerValidator = [
+    validateJWT,
     hasRoles("ADMIN_ROLE"),
     body("name").notEmpty().withMessage("Name is required"),
     body("surname").notEmpty().withMessage("Surname is required"),
@@ -30,19 +31,20 @@ export const registerValidator = [
 export const loginValidator = [
     body("email").optional().isEmail().withMessage("Not a valid email"),
     body("username").optional().isString().withMessage("Username is in the wrong format"),
-    body("password").isLength({min: 8}).withMessage("Password must contain at least 8 characters"),
+    body("password").notEmpty(),
     validateFields,
     handleErrors
 ]
 
 export const listValidator = [
-    hasRoles("ADMIN_ROLE"),
     validateJWT,
+    hasRoles("ADMIN_ROLE"),
     validateFields,
     handleErrors
 ]
 
 export const getUserByIdValidator = [
+    validateJWT,
     hasRoles("ADMIN_ROLE"),
     validateJWT,
     param("uid").isMongoId().withMessage("Not a valid MongoDB ID"),
@@ -52,8 +54,8 @@ export const getUserByIdValidator = [
 ]
 
 export const deleteUserValidator = [
-    hasRoles("ADMIN_ROLE"),
     validateJWT,
+    hasRoles("ADMIN_ROLE"),
     body("uid").optional().isMongoId().withMessage("Not a valid MongoDB ID"),
     body("uid").optional().custom(userExists).custom(userIsDeleted),
     validateFields,

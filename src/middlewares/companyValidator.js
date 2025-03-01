@@ -2,6 +2,7 @@ import { hasRoles } from "./validate-roles.js"
 import { validateJWT } from "./validate-jwt.js"
 import { validateFields } from "./validate-fields.js"
 import { handleErrors } from "./handleErrors.js"
+import { body } from "express-validator"
 
 export const createCompanyValidator = [
     validateJWT,

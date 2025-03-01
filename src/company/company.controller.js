@@ -1,4 +1,4 @@
-import Company from "./company.model.js"
+import Company from "./comany.model.js"
 import ExcelJS from "exceljs"
 import fs from "fs"
 import path from "path";
@@ -30,9 +30,37 @@ export const createCompany = async (req, res) => {
   }
 }
 
+export const updateCompany = async (req, res) => {
+  try {
+    const { _id } = req.body
+    const data = req.body
+
+    const company = await Company.findByIdAndUpdate(_id, data, { new: true })
+
+    if (!company) {
+      return res.status(404).json({
+        success: false,
+        message: "Company not found",
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      message: "Company updated",
+      company,
+    })
+  } catch (err) {
+    return res.status(500).json({
+      success: false,
+      message: "Error updating company",
+      error: err.message
+    })
+  }
+}
+
 export const generateCompaniesReport = async (req, res) => {
   try {
-    const companies = await Company.find({ status: true })
+    const companies = await Company.find()
 
     if (!companies.length) {
       return res.status(404).json({
@@ -69,7 +97,8 @@ export const generateCompaniesReport = async (req, res) => {
 
     const filePath = path.join(reportsDir, "Company_Report.xlsx");
     await workbook.xlsx.writeFile(filePath);
-    res.download(filePath, "Company_Report.xlsx", () => fs.unlinkSync(filePath));
+    res.download(filePath, "Company_Report.xlsx")
+    console.log("File written to:", filePath)
   } catch (err) {
     return res.status(500).json({
       success: false,
