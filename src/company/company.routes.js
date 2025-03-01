@@ -1,11 +1,11 @@
 import { Router } from "express";
-import { createCompanyValidator } from "../middlewares/companyValidator"
-import { createCompany } from "./company.controller";
+import { createCompanyValidator, updateCompanyValidator } from "../middlewares/companyValidator"
+import { createCompany, updateCompany } from "./company.controller";
 
 const router = Router()
 
 router.post("/createCompany", createCompanyValidator, createCompany)
 
-router.put("/updateCompany", )
+router.put("/updateCompany", updateCompanyValidator, updateCompany)
 
 export default router
